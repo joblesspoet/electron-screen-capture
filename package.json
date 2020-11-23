@@ -2,19 +2,29 @@
   "name": "my-app",
   "productName": "my-app",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Screen Capture application",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured\"",
+    "pack": "electron-builder ",   
+    "build": "electron-packager . app --platform win32 --arch x64 --out dist/",
+    "setup": "electron-installer-windows --src dist/app-win32-x64/ --dest dist/installers/"
   },
-  "keywords": ["screen","capture","recorder"],
+  "keywords": [
+    "screen",
+    "capture",
+    "recorder"
+  ],
   "author": {
     "name": "Ghulam Rasool",
     "email": "sanglavi@hotmail.com"
+  },
+  "repository": {
+    "url": "https://github.com/joblesspoet/electron-screen-capture"
   },
   "license": "MIT",
   "config": {
@@ -53,6 +63,16 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "electron": "11.0.2"
+    "electron": "11.0.2",
+    "electron-builder": "^22.9.1",
+    "electron-installer-windows": "^3.0.0"
+  },
+  "build": {
+    "appId": "com.joblesspoet.screencapture",
+    "productName": "Screen Recorder",
+    "target": "deb,snap,rpm,nsis,msi"
+  },
+  "nsis": {
+    "allowToChangeInstallationDirectory": true
   }
 }
